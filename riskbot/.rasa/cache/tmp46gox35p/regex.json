@@ -1,0 +1,6 @@
+[
+  {
+    "name": "vuln",
+    "pattern": "(\\bransomware\\b|\\bcve\\b|\\bexploit\\b|\\bMalware\\b)"
+  }
+]
