@@ -103,4 +103,37 @@ nlu:
     - ransomware
     - cve
     - exploit
-    - Malware
+    - Ransomwares
+    - Cves
+    - Exploits
+    - cves
+    - ransomwares
+    - exploits
+    - Cve
+    - vulnerabilities
+    - vulnerability
+
+- intent: trending_count
+  examples: |
+    - How many trending [Ransomware](vuln) in last [60](duration) days?
+    - How many trending [cve](vuln) in last [30](duration) days?
+    - Number of trending [Ransomware] (vuln) in last [20](duration) days?
+    - Number of trending [cve] (vuln) in last [10](duration) days?
+    - Count of trending [Ransomware] in last [60](duration) days?
+    - Count of trending [Exploit] in last [90](duration) days?
+
+- intent: trending_data
+  examples: |
+    - Show sample trending [Ransomware](vuln) in last [60](duration) days?
+    - Show sample trending [cve](vuln) in last [90](duration) days?
+    - Show sample trending [Exploit](vuln) in last [20](duration) days?
+    - What are the [Ransomware](vuln) which are trending in last [10](duration) days?
+    - What are the [cve](vuln) which are trending in last [30](duration) days?
+
+- lookup: duration
+  examples: |
+    - 10
+    - 20
+    - 30
+    - 60
+    - 90

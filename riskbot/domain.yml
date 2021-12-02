@@ -9,9 +9,12 @@ intents:
   - mood_unhappy
   - bot_challenge
   - vuln_count
+  - trending_count
+  - trending_data
 
 entities:
   - vuln
+  - duration
 
 responses:
   utter_greet:
@@ -35,6 +38,8 @@ responses:
 
 actions:
   - action_send_count
+  - action_send_trend_count
+  - action_send_trend_data
 
 session_config:
   session_expiration_time: 60

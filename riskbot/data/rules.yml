@@ -16,3 +16,13 @@ rules:
   steps:
   - intent: vuln_count
   - action: action_send_count
+
+- rule: Send trending count information
+  steps:
+  - intent: trending_count
+  - action: action_send_trend_count
+
+- rule: Send trending data information
+  steps:
+  - intent: trending_data
+  - action: action_send_trend_data
