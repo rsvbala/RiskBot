@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+riskbot/.rasa/
+riskbot/models/
+riskbot/.idea/
+riskbot_api/.idea/
+riskbot_api/riskbot_api_env/

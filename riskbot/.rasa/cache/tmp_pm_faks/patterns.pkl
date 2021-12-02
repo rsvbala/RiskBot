@@ -1,6 +1,0 @@
-[
-  {
-    "name": "target_entity",
-    "pattern": "(\\bransomware\\b|\\bcve\\b|\\bexploit\\b|\\bmalware\\b)"
-  }
-]

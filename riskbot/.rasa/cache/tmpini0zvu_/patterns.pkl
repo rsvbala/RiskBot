@@ -1,6 +1,0 @@
-[
-  {
-    "name": "vuln_type",
-    "pattern": "(\\bransomware\\b|\\bcve\\b|\\bexploit\\b|\\bmalware\\b|\\bxyz\\b|\\babc\\b|\\bdre\\b)"
-  }
-]
