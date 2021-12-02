@@ -11,10 +11,14 @@ intents:
   - vuln_count
   - trending_count
   - trending_data
+  - publish_data
+  - check_product_vulns
 
 entities:
   - vuln
   - duration
+  - version
+  - product
 
 responses:
   utter_greet:
@@ -40,6 +44,8 @@ actions:
   - action_send_count
   - action_send_trend_count
   - action_send_trend_data
+  - action_send_publish_data
+  - action_send_product_data
 
 session_config:
   session_expiration_time: 60

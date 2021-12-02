@@ -96,8 +96,8 @@ nlu:
     - How many [cve](vuln) are there in my network?
     - Number of [Ransomware] (vuln) I am affected by?
     - Number of [cve] (vuln) I am affected by?
-    - Count of [Ransomware] in the system?
-    - Count of [Exploit] in the system?
+    - Count of [Ransomware](vuln) in the system?
+    - Count of [Exploit](vuln) in the system?
 - lookup: vuln
   examples: |
     - ransomware
@@ -117,23 +117,55 @@ nlu:
   examples: |
     - How many trending [Ransomware](vuln) in last [60](duration) days?
     - How many trending [cve](vuln) in last [30](duration) days?
-    - Number of trending [Ransomware] (vuln) in last [20](duration) days?
-    - Number of trending [cve] (vuln) in last [10](duration) days?
-    - Count of trending [Ransomware] in last [60](duration) days?
-    - Count of trending [Exploit] in last [90](duration) days?
+    - Number of trending [Ransomware](vuln) in last [20](duration) days?
+    - Number of trending [cve] (vuln) in last [20](duration) days?
+    - Count of trending [Ransomware](vuln) in last [60](duration) days?
+    - Count of trending [Exploit](vuln) in last [90](duration) days?
 
 - intent: trending_data
   examples: |
     - Show sample trending [Ransomware](vuln) in last [60](duration) days?
-    - Show sample trending [cve](vuln) in last [90](duration) days?
+    - Show sample trending [cve](vuln) in past [90](duration) days?
     - Show sample trending [Exploit](vuln) in last [20](duration) days?
-    - What are the [Ransomware](vuln) which are trending in last [10](duration) days?
+    - What are the [Ransomware](vuln) which are trending in past [20](duration) days?
     - What are the [cve](vuln) which are trending in last [30](duration) days?
 
 - lookup: duration
   examples: |
-    - 10
+    - 7
     - 20
     - 30
     - 60
     - 90
+
+- intent: publish_data
+  examples: |
+    - Show recently published [Ransomware](vuln)?
+    - Show recently published [cve](vuln)?
+    - Show recently published [exploit](vuln)?
+    - List recently released [Ransomware](vuln)?
+    - List recently released [exploit](vuln)?
+    - List recently [cve](vuln)?
+
+
+- intent: check_product_vulns
+  examples: |
+    - Does [zoom](product) [4.6.10](version) have any known vulns?
+    - Does [teams](product) [4.6.10](version) have any known vulns?
+    - Are there any known vulns for [zoom] (product) [5.6.10](version)?
+    - Are there any known vulns for [teams] (product) [6.7.10](version)?
+
+- lookup: product
+  examples: |
+    - zoom
+    - teams
+    - Zoom
+    - Teams
+    - ZOOM
+    - TEAMS
+
+- lookup: version
+  examples: |
+    - 4.6.10
+    - 5.6.10
+    - 6.7.10

@@ -26,3 +26,13 @@ rules:
   steps:
   - intent: trending_data
   - action: action_send_trend_data
+
+- rule: Send published data information
+  steps:
+  - intent: publish_data
+  - action: action_send_publish_data
+
+- rule: Check product vulnerability information
+  steps:
+  - intent: check_product_vulns
+  - action: action_send_product_data
