@@ -58,7 +58,11 @@ def index(entity, type):
 @app.route('/product/<string:name>')
 def product(name):
     cur = mysql.connection.cursor()
-    sql = "SELECT group_concat(cve_id) as cves, group_concat(version) as versions, product from CveToCpe WHERE product = '{}' GROUP BY product".format(name)
+    version = request.args.get('version')
+    sql = "SELECT group_concat(cve_id) as cves, group_concat(version) as versions, product from CveToCpe WHERE product = '{}'".format(name)
+    if version:
+        sql += "AND version = '{}'".format(version)
+    sql += " GROUP BY product"
     cur.execute(sql)
     data = cur.fetchone()
     return jsonify(data)  # use jsonify here
