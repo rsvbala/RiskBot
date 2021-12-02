@@ -66,7 +66,7 @@ class ActionSendTrendCount(Action):
         if not current_entity:
             dispatcher.utter_message(
                 text="Sorry I dont understand what you meant. I am still learning, please be more specific. Example : "
-                     "How many ransomwares are in my system")
+                     "How many exploits are in my system")
         else:
             response = requests.get(
                 "http://localhost:5000/{}/count?trending={}".format(entity_mapping[current_entity.lower()], days))
@@ -90,7 +90,7 @@ class ActionSendTrendData(Action):
         if not current_entity:
             dispatcher.utter_message(
                 text="Sorry I dont understand what you meant. I am still learning, please be more specific. Example : "
-                     "How many ransomwares are in my system")
+                     "How many cves are in my system")
         else:
             response = requests.get(
                 "http://localhost:5000/{}/data?trending={}".format(entity_mapping[current_entity.lower()], days))
@@ -105,5 +105,64 @@ class ActionSendTrendData(Action):
                         text="Trending {} are {}".format(current_entity.lower(), result.join(res_list)))
                 else:
                     dispatcher.utter_message(text="No data found in the time frame")
+
+        return []
+
+
+class ActionSendPublishedData(Action):
+
+    def name(self) -> Text:
+        return "action_send_publish_data"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        current_entity = next(tracker.get_latest_entity_values("vuln"), None)
+        if not current_entity:
+            dispatcher.utter_message(
+                text="Sorry I dont understand what you meant. I am still learning, please be more specific. Example : "
+                     "How many ransomwares are published in the last 7 days")
+        else:
+            response = requests.get(
+                "http://localhost:5000/{}/data?published=7".format(entity_mapping[current_entity.lower()]))
+            if response.status_code == 200:
+                res_list = []
+                response_json = response.json()
+                for each in response_json:
+                    res_list.append(each[entity_to_id_mapping[entity_mapping[current_entity.lower()]]])
+                if res_list:
+                    result = ", "
+                    dispatcher.utter_message(
+                        text="Recently(past 7 days) published {} are {}".format(current_entity.lower(),
+                                                                                result.join(res_list)))
+                else:
+                    dispatcher.utter_message(text="No data found in the time frame")
+
+        return []
+
+
+class ActionSendProductData(Action):
+
+    def name(self) -> Text:
+        return "action_send_product_data"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        current_product = next(tracker.get_latest_entity_values("product"), None)
+        current_version = next(tracker.get_latest_entity_values("version"), None)
+        if not current_product:
+            dispatcher.utter_message(
+                text="Sorry I dont understand what you meant. I am still learning, please be more specific. Example : "
+                     "How many ransomwares are published in the last 7 days")
+        else:
+            response = requests.get(
+                "http://localhost:5000/product/{}?version={}".format(current_product.lower(), current_version))
+            if response.status_code == 200:
+                response_json = response.json()
+                dispatcher.utter_message(
+                    text="The software and version combination has the following vulnerabilities {}".format(response_json["cves"]))
+            else:
+                dispatcher.utter_message(text="No vulnerabilities found for the software")
 
         return []
