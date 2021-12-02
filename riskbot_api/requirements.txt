@@ -1,2 +1,6 @@
 flask == 2.0.2 
 flask_mysqldb == 0.2.0
+requests
+sanic==21.6.0
+Sanic-Cors==1.0.0
+sanic-routing==0.7.0
